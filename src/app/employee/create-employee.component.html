@@ -1,0 +1,100 @@
+
+<form #employeeForm="ngForm" (ngSubmit)="saveEmployeeFrom(employeeForm)">
+  
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2 class="panel-title">CreateEmployee</h2>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="name" class="label-control">Fullname</label>
+        <input id="name" type="text" class="form-control" name="fn" [(ngModel)]="fn">
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="label-control">Email</label>
+        <input id="email" type="text" class="form-control" name="em" [(ngModel)]="em">
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber" class="label-control">PhoneNumber</label>
+        <input id="phoneNumber" type="text" class="form-control" name="ph" [(ngModel)]="ph">
+      </div>
+
+      <div class="form-group">
+        <label for="dateOfBirth" class="label-control">Date Of Birth</label>
+        <input id="dateOfBirth" type="text" bsDatepicker class="form-control" name="dateOfBirth" [(ngModel)]="dateOfBirth">
+      </div>
+
+      <div class="form-group">
+        <label>ContactPreference</label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" value="email" name="ContactPreference" [(ngModel)]="ContactPreference"> Email
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="phoneNumber" name="ContactPreference" [(ngModel)]="ContactPreference"> PhoneNumber
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Gender</label>
+        <div class="form-control">
+          <label class="radio-inline">
+            <input type="radio" value="male" name="gender" [(ngModel)]="gender"> Male
+          </label>
+          <label class="radio-inline">
+            <input type="radio" value="female" name="gender" [(ngModel)]="gender"> Female
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-control">
+          <label class="checkbox-inline">
+            <input type="checkbox" name="isActive" [(ngModel)]="isActive"> isActive
+          </label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="department" class="label-control">Department</label>
+        <select id="department" name="department" [(ngModel)]="department" class="form-control">
+          <option *ngFor="let department of departments" [value]="department.id">
+            {{department.name}}
+          </option>
+        </select>
+      </div>
+
+      <div class="form-group">
+          <label for="photopath" class="label-control">photopath</label>
+          <input id="photopath" type="text" class="form-control" name="php" [(ngModel)]="php">
+          </div>
+
+          <div class="form-group">
+          <button type="button" (click)="togglePhotoPreview()" class="btn btn-primary">
+            {{previewPhotopath? "Hide":"show"}} preview
+          </button>
+        </div>
+          
+          <div class="form-group">
+            <img [src]="php" width="200" height="200" *ngIf="previewPhotopath"/>
+          </div>
+
+
+
+
+
+    </div>
+    <div class="panel-footer">
+      <button type="submit" class="btn btn-success">Save</button>
+    </div>
+  </div>
+</form>
+
+{{employeeForm.value|json}}
+
+<h1 *ngFor="let employees of employee">
+  {{employees.name}}
+</h1>
